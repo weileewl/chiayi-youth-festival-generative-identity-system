@@ -1,7 +1,13 @@
-//CYF Poster Generator v2
+//Chiayi Youth Festival 2023
+//Generative Identity System
+//Beta Version
 //Wei Lee
 
-//linetic type variables
+//kinetic type algorithm reference:
+//Type:Kinetic Type by Tim Rodenbroeker V1
+//https://editor.p5js.org/DAI2020/sketches/uvJX1SM_J
+
+//kinetic type variables
 let font, fontZH;
 let pg;
 let tX,tY,sp,dspx,dspy,fct;
