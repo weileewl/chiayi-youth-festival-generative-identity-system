@@ -24,6 +24,7 @@ let images = [];
 let currentImageIndex = 0;
 let nextPictureButton, saveButton, reloadButton;
 let microtest = [];
+let information;
 
 function preload() {
   //fonts
@@ -61,6 +62,9 @@ function preload() {
   images.push(loadImage('images/RailwayStation1.jpg'));
   images.push(loadImage('images/RailwayStation4.jpg'));
   images.push(loadImage('images/RailwayStation6.jpg'));
+
+  information = loadImage('images/information.png');
+
 }
 
 function setup() {
@@ -94,7 +98,13 @@ function draw() {
 
   // PGraphics
   img = images[currentImageIndex];
-  pg.image(img, 0, 0, newWidth, newHeight);
+
+  if (img.width > img.height) {
+    pg.image(img, -width/2, -170, newWidth, newHeight);
+   } else {
+    pg.image(img, 0, -120, newWidth, newHeight);
+  } 
+  // pg.image(img, -width/2, 0, newWidth, newHeight);
   pg.image(graphics, 0, 0, width, height);
 
 
@@ -132,9 +142,9 @@ function draw() {
   // pg.text("THE CITY", 175, 380);
   // pg.text("UNDEFINED", -170, 585);
 
-  pg.text("Chiayi,", -200, 200);
-  pg.text("the City", 225, 380);
-  pg.text("Undefined", -170, 585);
+  pg.text("Chiayi,", -115, 195);
+  pg.text("the City", 200, 310);
+  pg.text("Undefined", -170, 560);
 
   // pg.textSize(20);
   // pg.text("Chiayi Youth Festival 2023", 0, height - 170);
@@ -142,13 +152,13 @@ function draw() {
 
   // fontZH
   pg.textFont(fontZH);
-  pg.textSize(180);
+  pg.textSize(140);
   // pg.text("實驗新嘉義", 0, 25);
-  pg.text("實", -50, 50);
-  pg.text("驗", 50, 225);
-  pg.text("新", -200, 400);
-  pg.text("嘉", 225, 500);
-  pg.text("義", 25, 700);
+  pg.text("實", -50, 35);
+  pg.text("驗", 50, 180);
+  pg.text("新", -150, 310);
+  pg.text("嘉", 200, 400);
+  pg.text("義", 25, 545);
 
   // old version
   // // fontEN
@@ -168,7 +178,11 @@ function draw() {
   // pg.text("第三屆", 0, height - 130);
   // pg.text("有事青年節", 0, height - 70);
 
+
+
   pg.pop();
+
+
   //linetic type algorithm
   let tilesX = tX.value();
   let tilesY = tY.value();
@@ -207,6 +221,12 @@ function draw() {
 
     }
   }
+
+  noStroke();
+  fill(255);
+  rect(0, 630, 600, 170);
+  image(information, width/2, 715, 600, 170);
+
 }
 
 function createSliders(){
