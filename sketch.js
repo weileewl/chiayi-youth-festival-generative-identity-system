@@ -121,33 +121,52 @@ function draw() {
   pg.fill(255);
 
   pg.textFont(font);
-  pg.textSize(90);
+  pg.textSize(40);
 
   pg.push();
   pg.translate(width/2, 0);
   pg.textAlign(CENTER, CENTER);
 
-  // fontEN
-  pg.text("Chiayi,", 0, height / 2 - 180);
-  pg.text("the", 0, height / 2 - 90);
-  pg.text("City", 0, height / 2);
-  pg.text("Undefined", 0, height / 2 + 90);
+  // // fontEN
+  // pg.text("CHIAYI,", -200, 200);
+  // pg.text("THE CITY", 175, 380);
+  // pg.text("UNDEFINED", -170, 585);
 
-  pg.textSize(20);
+  pg.text("Chiayi,", -200, 200);
+  pg.text("the City", 225, 380);
+  pg.text("Undefined", -170, 585);
+
+  // pg.textSize(20);
   // pg.text("Chiayi Youth Festival 2023", 0, height - 170);
-  pg.text("10.21 – 10.22", 0, height - 20);
+  // pg.text("2023.10.21 – 10.22", 0, height - 20);
 
   // fontZH
   pg.textFont(fontZH);
-  pg.textSize(50);
-  pg.text("實驗新嘉義", 0, 25);
-  pg.text("第三屆", 0, height - 130);
-  pg.text("有事青年節", 0, height - 70);
+  pg.textSize(180);
+  // pg.text("實驗新嘉義", 0, 25);
+  pg.text("實", -50, 50);
+  pg.text("驗", 50, 225);
+  pg.text("新", -200, 400);
+  pg.text("嘉", 225, 500);
+  pg.text("義", 25, 700);
+
+  // old version
+  // // fontEN
+  // pg.text("Chiayi,", 0, height / 2 - 180);
+  // pg.text("the", 0, height / 2 - 90);
+  // pg.text("City", 0, height / 2);
+  // pg.text("Undefined", 0, height / 2 + 90);
 
   // pg.textSize(20);
-  // pg.text("中央實驗場．嘉城市集——中央廣場", 0, height - 130);
-  // pg.text("文化廟口——嘉邑城隍廟", 0, height - 130);
-  // pg.text("靈感沙龍——嘉義市立美術館．嘉義願景館．嘉義舊監獄．桃城豆花－光華店", 0, height - 130);
+  // // pg.text("Chiayi Youth Festival 2023", 0, height - 170);
+  // pg.text("2023.10.21 – 10.22", 0, height - 20);
+
+  // // fontZH
+  // pg.textFont(fontZH);
+  // pg.textSize(50);
+  // pg.text("實驗新嘉義", 0, 25);
+  // pg.text("第三屆", 0, height - 130);
+  // pg.text("有事青年節", 0, height - 70);
 
   pg.pop();
   //linetic type algorithm
@@ -249,7 +268,7 @@ function saveAsJpg() {
 function drawGlitchA() { // glitch square
   for (let i = 0; i < col; i++) {
     for (let j = 0; j < row; j++) {
-      if (random() < 0.25) {
+      if (random() < 0.08) {
         const x = i * gridWidth;
         const y = j * gridHeight;
         const pixelColor = img.get(x, y);
@@ -269,7 +288,7 @@ function drawGlitchB() { // glitch square random high contrast color
   // graphics.clear();
   for (let i = 0; i < col; i++) {
     for (let j = 0; j < row; j++) {    
-      if (random() < 0.085) {
+      if (random() < 0.03) {
         const x = i * gridWidth;
         const y = j * gridHeight;
         let r = random() > 0.5 ? 255 : 0;
@@ -286,7 +305,7 @@ function drawGlitchC() { // mosaic glitch
   // graphics.clear();
   for (let i = 0; i < canvasWidth; i += gridHeight/2) {
     for (let j = 0; j < canvasHeight; j += gridHeight/2) {
-          if (random() < 0.03) {
+          if (random() < 0.02) {
         const pixelColor = img.get(i, j);
         graphics.fill(pixelColor);  
         graphics.rect(i, j, Math.floor(random(3, 20)), Math.floor(random(3, 20)));
@@ -300,7 +319,7 @@ function drawGlitchC() { // mosaic glitch
     // graphics.clear();
     for (let i = 0; i < canvasWidth; i += gridHeight) {
       for (let j = 0; j < canvasHeight; j += gridHeight) {
-        if (random() < 0.015) {
+        if (random() < 0.003) {
           const pixelColor = img.get(i, j);
           graphics.fill(pixelColor);
           graphics.rect(i, j, random(10, 20), random(10, 20));
@@ -314,7 +333,7 @@ function drawGlitchE() { // mini dots pattern
   // graphics.clear();
   for (let i = 0; i < canvasWidth; i += gridHeight) {
     for (let j = 0; j < canvasHeight; j += gridHeight) {
-          if (random() < 0.17) {
+          if (random() < 0.01) {
         const pixelColor = img.get(i, j);
         graphics.fill(pixelColor);  
         graphics.rect(i, j, 3, 3);
