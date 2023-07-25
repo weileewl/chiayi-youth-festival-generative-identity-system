@@ -13,8 +13,8 @@ let pg;
 let tX,tY,sp,dspx,dspy,fct;
 
 //glitch graphic variables
-let canvasWidth = 600;
-let canvasHeight = 800;
+let canvasWidth = 1800;
+let canvasHeight = 2400;
 let col = 7;
 let row = 70;
 let gridWidth = canvasWidth / col;
@@ -31,48 +31,31 @@ function preload() {
   font = loadFont("data/ABCWhyteInktrapEdu-Bold.otf");
   fontZH = loadFont("data/NotoSansTC-Bold.otf");
 
-  //images
-  images.push(loadImage('images/CentralPlaza11.jpg'));
-  images.push(loadImage('images/CentralPlaza12.jpg'));
-  images.push(loadImage('images/CentralPlaza13.jpg'));
-  images.push(loadImage('images/ChengHuangTemple1.jpg'));
-  images.push(loadImage('images/ChengHuangTemple3.jpg'));
-  images.push(loadImage('images/ChengHuangTemple7.jpg'));
-  images.push(loadImage('images/ArtMuseum3.jpg'));
-  images.push(loadImage('images/ArtMuseum4.jpg'));
-  images.push(loadImage('images/ArtMuseum5.jpg'));
-  images.push(loadImage('images/ArtMuseum6.jpg'));
-  images.push(loadImage('images/VisionStation1.jpg'));
-  images.push(loadImage('images/VisionStation4.jpg'));
-  images.push(loadImage('images/VisionStation5.jpg'));
-  images.push(loadImage('images/OldPrison1.jpg'));
-  images.push(loadImage('images/OldPrison5.jpg'));
-  images.push(loadImage('images/OldPrison7.jpg'));
-  images.push(loadImage('images/TofuPudding1.jpg'));
-  images.push(loadImage('images/TofuPudding2.jpg'));
+  //image 1
   images.push(loadImage('images/FountainCircle3.jpg'));
-  images.push(loadImage('images/FountainCircle4.jpg'));
-  images.push(loadImage('images/FountainCircle5.jpg'));
-  images.push(loadImage('images/FountainCircle7.jpg'));
-  images.push(loadImage('images/Tower2.jpg'));
-  images.push(loadImage('images/Tower3.jpg'));
-  images.push(loadImage('images/Tower4.jpg'));
-  images.push(loadImage('images/Tower5.jpg'));
-  images.push(loadImage('images/Tower6.jpg'));
-  images.push(loadImage('images/RailwayStation1.jpg'));
-  images.push(loadImage('images/RailwayStation4.jpg'));
+  //image 2
+  images.push(loadImage('images/CentralPlaza11.jpg'));
+  //image 3
+  images.push(loadImage('images/ChengHuangTemple7.jpg'));
+  //image 4
   images.push(loadImage('images/RailwayStation6.jpg'));
-
+  //image 5
+  images.push(loadImage('images/ArtMuseum6.jpg'));
+  //image 6
+  images.push(loadImage('images/TofuPudding3.jpg'));
+  //image 7
+  images.push(loadImage('images/OldPrison5.jpg'));
+  //image 8
+  images.push(loadImage('images/OldPrison7.jpg'));
   information = loadImage('images/information.png');
-
 }
 
 function setup() {
-  createCanvas(600, 800);
+  createCanvas(canvasWidth, canvasHeight);
   frameRate(60);
   createSliders();
-  pg = createGraphics(600, 800);
-  graphics = createGraphics(600, 800);
+  pg = createGraphics(width, height);
+  graphics = createGraphics(width, height);
   img = images[currentImageIndex];
   imageMode(CENTER);
   graphics.noStroke();
@@ -86,7 +69,6 @@ function setup() {
 }
 
 function draw() {
-
   // image ratio calculation
   let heightRatio = height / img.height;
   let newWidth = img.width * heightRatio;
@@ -97,25 +79,58 @@ function draw() {
   }
 
   // PGraphics
+  // currentImageIndex = 0;
   img = images[currentImageIndex];
 
-  if (img.width > img.height) {
-    pg.image(img, -width/2, -170, newWidth, newHeight);
-   } else {
-    pg.image(img, 0, -120, newWidth, newHeight);
-  } 
-  // pg.image(img, -width/2, 0, newWidth, newHeight);
+  // if (img.width > img.height) {
+  //   //horizontal image
+  //   pg.image(img, -width/2, -400, newWidth, newHeight);
+  //  } else {
+  //   //vertical image
+  //   pg.image(img, 0, -120, newWidth, newHeight);
+  // } 
+
+  // FountainCircle
+  if (currentImageIndex == 0) {
+    pg.image(img, -850, -475, newWidth, newHeight);
+   }
+  
+  // CentralPlaza
+  if (currentImageIndex == 1) {
+    pg.image(img, 0, -500, newWidth, newHeight);
+   }
+  
+  // ChengHuangTemple
+  if (currentImageIndex == 2) {
+    pg.image(img, -900, -225, newWidth, newHeight);
+   }
+
+  // RailwayStation
+  if (currentImageIndex == 3) {
+    pg.image(img, -900, -375, newWidth, newHeight);
+   }
+
+  // ArtMuseum
+   if (currentImageIndex == 4) {
+     pg.image(img, -925, -375, newWidth, newHeight);
+    }
+  
+   // TofuPudding
+   if (currentImageIndex == 5) {
+     pg.image(img, -1300, -375, newWidth, newHeight);
+   }
+
+  // OldPrison
+    if (currentImageIndex == 6) {
+      pg.image(img, 0, -400, newWidth, newHeight); 
+     }
+
+  // OldPrison2
+    if (currentImageIndex == 7) {
+      pg.image(img, -900, -400, newWidth, newHeight); 
+     }
+
   pg.image(graphics, 0, 0, width, height);
-
-
-  // if (random() < 0.05) {
-  //   let r = random() > 0.5 ? 255 : 0;
-  //   let g = random() > 0.5 ? 255 : 0;
-  //   let b = random() > 0.5 ? 255 : 0;
-  //   pg.fill(r, g, b, 255);
-  // }
-
-
 
   if (random() < 0.05) {
     graphics.clear();
@@ -128,60 +143,32 @@ function draw() {
     drawGlitchE();
     }
 
-  pg.fill(255);
+  pg.fill(237);
 
   pg.textFont(font);
-  pg.textSize(40);
+  pg.textSize(120);
 
   pg.push();
   pg.translate(width/2, 0);
   pg.textAlign(CENTER, CENTER);
 
   // // fontEN
-  // pg.text("CHIAYI,", -200, 200);
-  // pg.text("THE CITY", 175, 380);
-  // pg.text("UNDEFINED", -170, 585);
 
-  pg.text("Chiayi,", -115, 195);
-  pg.text("the City", 200, 310);
-  pg.text("Undefined", -170, 560);
-
-  // pg.textSize(20);
-  // pg.text("Chiayi Youth Festival 2023", 0, height - 170);
-  // pg.text("2023.10.21 – 10.22", 0, height - 20);
+  // pg.text("Chiayi,", -345, 585);
+  // pg.text("the City", 600, 930);
+  // pg.text("Undefined", -510, 1680);
 
   // fontZH
   pg.textFont(fontZH);
-  pg.textSize(140);
-  // pg.text("實驗新嘉義", 0, 25);
-  pg.text("實", -50, 35);
-  pg.text("驗", 50, 180);
-  pg.text("新", -150, 310);
-  pg.text("嘉", 200, 400);
-  pg.text("義", 25, 545);
+  pg.textSize(420);
 
-  // old version
-  // // fontEN
-  // pg.text("Chiayi,", 0, height / 2 - 180);
-  // pg.text("the", 0, height / 2 - 90);
-  // pg.text("City", 0, height / 2);
-  // pg.text("Undefined", 0, height / 2 + 90);
-
-  // pg.textSize(20);
-  // // pg.text("Chiayi Youth Festival 2023", 0, height - 170);
-  // pg.text("2023.10.21 – 10.22", 0, height - 20);
-
-  // // fontZH
-  // pg.textFont(fontZH);
-  // pg.textSize(50);
-  // pg.text("實驗新嘉義", 0, 25);
-  // pg.text("第三屆", 0, height - 130);
-  // pg.text("有事青年節", 0, height - 70);
-
-
+  pg.text("實", -150, 90);
+  pg.text("驗", 150, 530);
+  pg.text("新", -525, 875);
+  pg.text("嘉", 525, 1150);
+  pg.text("義", 0, 1575);
 
   pg.pop();
-
 
   //linetic type algorithm
   let tilesX = tX.value();
@@ -223,22 +210,58 @@ function draw() {
   }
 
   noStroke();
-  fill(255);
-  rect(0, 630, 600, 170);
-  image(information, width/2, 715, 600, 170);
+  image(information, width/2, height/2, 1800, 2400);
 
 }
 
+// function createSliders(){
+//   tX = createSlider(1, 80, 30, 1);
+//   tX.position(20, height + 40);
+//   createP('Tiles X').position(20, height);
+
+//   tY = createSlider(1, 80, 22, 1);
+//   tY.position(20, height + 100);
+//   createP('Tiles Y').position(20, height+60);
+
+//   sp = createSlider(0, 1, 0.05, 0.01);
+//   sp.position(20, height + 160);
+//   createP('Speed').position(20, height+120);
+
+//   dspx = createSlider(0, 0.1, 0.03, 0.01);
+//   dspx.position(180, height + 40);
+//   createP('Displacement X').position(180, height);
+
+//   dspy = createSlider(0, 0.2, 0, 0.01);
+//   dspy.position(180, height + 100);
+//   createP('Displacement Y').position(180, height+60);
+
+//   fct = createSlider(0, 300, 80, 1);
+//   fct.position(180, height + 160);
+//   createP('Offset').position(180, height+120);
+
+//   nextPictureButton = createButton("Change");
+//   nextPictureButton.position(373, height + 44);
+//   nextPictureButton.mousePressed(changeImage);
+//   createP('Change Image').position(350, height);
+
+//   saveButton = createButton("Save");
+//   saveButton.position(514, height + 44);
+//   saveButton.mousePressed(saveAsJpg);
+//   createP('Save JPG').position(500, height);
+
+//   createP('Chiayi Youth Festival 2023<br>Generative Identity System<br>Beta Version').position(370, height + 105);
+// }
+
 function createSliders(){
-  tX = createSlider(1, 80, 30, 1);
+  tX = createSlider(1, 80, 40, 1);
   tX.position(20, height + 40);
   createP('Tiles X').position(20, height);
 
-  tY = createSlider(1, 80, 16, 1);
+  tY = createSlider(1, 80, 22, 1);
   tY.position(20, height + 100);
   createP('Tiles Y').position(20, height+60);
 
-  sp = createSlider(0, 1, 0.05, 0.01);
+  sp = createSlider(0, 1, 0.03, 0.01);
   sp.position(20, height + 160);
   createP('Speed').position(20, height+120);
 
@@ -246,11 +269,11 @@ function createSliders(){
   dspx.position(180, height + 40);
   createP('Displacement X').position(180, height);
 
-  dspy = createSlider(0, 0.2, 0, 0.01);
+  dspy = createSlider(0, 0.2, 0, 0.005);
   dspy.position(180, height + 100);
   createP('Displacement Y').position(180, height+60);
 
-  fct = createSlider(0, 300, 10, 1);
+  fct = createSlider(0, 300, 25, 1);
   fct.position(180, height + 160);
   createP('Offset').position(180, height+120);
 
@@ -265,7 +288,6 @@ function createSliders(){
   createP('Save JPG').position(500, height);
 
   createP('Chiayi Youth Festival 2023<br>Generative Identity System<br>Beta Version').position(370, height + 105);
-
 }
 
 function changeImage() {
@@ -274,11 +296,11 @@ function changeImage() {
   } else {
     currentImageIndex++;
   }
-  drawGlitchA();
-  drawGlitchB();
-  drawGlitchC();
-  drawGlitchD();
-  drawGlitchE();
+  // drawGlitchA();
+  // drawGlitchB();
+  // drawGlitchC();
+  // drawGlitchD();
+  // drawGlitchE();
 }
 
 function saveAsJpg() {
@@ -288,7 +310,7 @@ function saveAsJpg() {
 function drawGlitchA() { // glitch square
   for (let i = 0; i < col; i++) {
     for (let j = 0; j < row; j++) {
-      if (random() < 0.08) {
+      if (random() < 0.3) {
         const x = i * gridWidth;
         const y = j * gridHeight;
         const pixelColor = img.get(x, y);
@@ -298,14 +320,13 @@ function drawGlitchA() { // glitch square
         const b = blue(c);
         const a = alpha(c);
         graphics.fill(r, g, b, a);
-        graphics.rect(x, y, gridWidth * random(-3, 3), gridHeight * random(-2, 2));
+        graphics.rect(x, y, gridWidth * random(-2.5, 2.5), gridHeight * random(-1.5, 1.5));
       }
      }
   }
 }
 
 function drawGlitchB() { // glitch square random high contrast color
-  // graphics.clear();
   for (let i = 0; i < col; i++) {
     for (let j = 0; j < row; j++) {    
       if (random() < 0.03) {
@@ -322,41 +343,36 @@ function drawGlitchB() { // glitch square random high contrast color
   }
 
 function drawGlitchC() { // mosaic glitch
-  // graphics.clear();
   for (let i = 0; i < canvasWidth; i += gridHeight/2) {
     for (let j = 0; j < canvasHeight; j += gridHeight/2) {
-          if (random() < 0.02) {
+          if (random() < 0.015) {
         const pixelColor = img.get(i, j);
         graphics.fill(pixelColor);  
-        graphics.rect(i, j, Math.floor(random(3, 20)), Math.floor(random(3, 20)));
-
+        graphics.rect(i, j, Math.floor(random(9, 60)), Math.floor(random(9, 60)));
           }
         }
       } 
     }
 
   function drawGlitchD() { // glitch cubes
-    // graphics.clear();
     for (let i = 0; i < canvasWidth; i += gridHeight) {
       for (let j = 0; j < canvasHeight; j += gridHeight) {
-        if (random() < 0.003) {
+        if (random() < 0.008) {
           const pixelColor = img.get(i, j);
           graphics.fill(pixelColor);
-          graphics.rect(i, j, random(10, 20), random(10, 20));
+          graphics.rect(i, j, random(30, 60), random(30, 40));
         }
       }
     }
   }
 
-
 function drawGlitchE() { // mini dots pattern
-  // graphics.clear();
   for (let i = 0; i < canvasWidth; i += gridHeight) {
     for (let j = 0; j < canvasHeight; j += gridHeight) {
-          if (random() < 0.01) {
+          if (random() < 0.03) {
         const pixelColor = img.get(i, j);
         graphics.fill(pixelColor);  
-        graphics.rect(i, j, 3, 3);
+        graphics.rect(i, j, 12, 12);
           }
         }
       } 
